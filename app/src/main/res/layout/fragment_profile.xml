@@ -1,0 +1,143 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".profile">
+
+    <!-- TODO: Update blank fragment layout -->
+    <LinearLayout
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <ImageView
+            android:layout_width="match_parent"
+            android:layout_height="250dp"
+            android:scaleType="fitXY"
+            android:src="@drawable/profile2"></ImageView>
+
+        <TextView
+            android:layout_marginTop="-50dp"
+            android:layout_marginLeft="50dp"
+            android:textSize="20dp"
+            android:fontFamily="@font/poppins_bold"
+            android:textColor="@color/white"
+            android:text="User96"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content">
+        </TextView>
+
+        <ImageButton
+            android:src="@drawable/ic_baseline_mode_edit_24"
+            android:layout_marginTop="-20dp"
+            android:background="@drawable/round_button"
+            android:layout_marginRight="30dp"
+            android:layout_gravity="right"
+            android:layout_width="70dp"
+            android:layout_height="70dp">
+        </ImageButton>
+
+        <TextView
+            android:textColor="@color/black"
+            android:textSize="20dp"
+            android:fontFamily="@font/poppins_bold"
+            android:layout_marginLeft="50dp"
+            android:text="Username"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content">
+        </TextView>
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:textColor="@color/darkgray"
+            android:text="User96"
+            android:layout_marginLeft="50dp"
+            android:layout_width="300dp"
+            android:layout_height="wrap_content">
+        </com.google.android.material.textfield.TextInputEditText>
+
+        <TextView
+            android:textColor="@color/black"
+            android:textSize="20dp"
+            android:fontFamily="@font/poppins_bold"
+            android:layout_marginLeft="50dp"
+            android:text="Phone"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content">
+        </TextView>
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:inputType="number"
+            android:textColor="@color/darkgray"
+            android:text="99999999"
+            android:layout_marginLeft="50dp"
+            android:layout_width="300dp"
+            android:layout_height="wrap_content">
+        </com.google.android.material.textfield.TextInputEditText>
+
+        <TextView
+            android:textColor="@color/black"
+            android:textSize="20dp"
+            android:fontFamily="@font/poppins_bold"
+            android:layout_marginLeft="50dp"
+            android:text="Email"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content">
+        </TextView>
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:textColor="@color/darkgray"
+            android:text="User96@gmail.com"
+            android:layout_marginLeft="50dp"
+            android:layout_width="300dp"
+            android:layout_height="wrap_content">
+        </com.google.android.material.textfield.TextInputEditText>
+
+        <TextView
+            android:textColor="@color/black"
+            android:textSize="20dp"
+            android:fontFamily="@font/poppins_bold"
+            android:layout_marginLeft="50dp"
+            android:text="Adresse"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content">
+        </TextView>
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:textColor="@color/darkgray"
+            android:text="User Avenue - User City - 0000"
+            android:layout_marginLeft="50dp"
+            android:layout_width="300dp"
+            android:layout_height="wrap_content">
+        </com.google.android.material.textfield.TextInputEditText>
+
+        <TextView
+            android:textColor="@color/black"
+            android:textSize="20dp"
+            android:fontFamily="@font/poppins_bold"
+            android:layout_marginLeft="50dp"
+            android:text="Password"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content">
+        </TextView>
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:inputType="textPassword"
+            android:textColor="@color/darkgray"
+            android:text="Password user"
+            android:layout_marginLeft="50dp"
+            android:layout_width="300dp"
+            android:layout_height="wrap_content">
+        </com.google.android.material.textfield.TextInputEditText>
+
+        <com.google.android.material.bottomnavigation.BottomNavigationView
+
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginTop="0dp"
+            android:layout_marginBottom="-14dp"
+            app:menu="@menu/bottom_menu"></com.google.android.material.bottomnavigation.BottomNavigationView>
+    </LinearLayout>
+
+</FrameLayout>

@@ -1,0 +1,191 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".favorites">
+
+    <LinearLayout
+        android:background="@color/gray"
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+    <!-- TODO: Update blank fragment layout -->
+
+        <TextView
+            android:fontFamily="@font/poppins_bold"
+            android:textSize="30dp"
+            android:textColor="@color/black"
+            android:layout_marginLeft="30dp"
+            android:layout_marginTop="30dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="My favorites" />
+
+        <EditText
+            android:layout_width="370dp"
+            android:layout_height="50dp"
+            android:layout_marginHorizontal="20dp"
+            android:layout_marginTop="10dp"
+            android:layout_marginBottom="30dp"
+            android:background="@drawable/search_bg"
+            android:drawableEnd="@drawable/ic_baseline_search_24"
+            android:drawableRight="@drawable/ic_baseline_search_24"
+            android:fontFamily="@font/poppins_regular"
+            android:hint="Search for a favorite ..."
+            android:paddingLeft="20dp"
+            android:paddingRight="20dp"
+            android:textColorHint="@color/darkgray" />
+
+        <ScrollView
+            android:layout_width="match_parent"
+            android:layout_height="510dp">
+
+            <LinearLayout
+                android:orientation="vertical"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+
+                <androidx.cardview.widget.CardView
+                    android:layout_marginBottom="20dp"
+                    app:cardCornerRadius="20dp"
+                    android:background="@color/white"
+                    android:layout_marginLeft="30dp"
+                    android:layout_width="350dp"
+                    android:layout_height="100dp">
+                    <LinearLayout
+                        android:orientation="horizontal"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent">
+
+                        <ImageView
+                            android:layout_marginHorizontal="20dp"
+                            android:layout_marginTop="10dp"
+                            android:src="@drawable/citroen_c3"
+                            android:layout_width="80dp"
+                            android:layout_height="80dp">
+
+                        </ImageView>
+
+                        <LinearLayout
+                            android:orientation="vertical"
+                            android:layout_width="wrap_content"
+                            android:layout_height="match_parent">
+
+                            <TextView
+                                android:textSize="16dp"
+                                android:textColor="@color/black"
+                                android:text="Citroen C3"
+                                android:layout_marginTop="20dp"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content">
+                            </TextView>
+
+                            <TextView
+                                android:textColor="@color/blue"
+                                android:text="$350 /month"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content">
+                            </TextView>
+
+                            <TextView
+                                android:textColor="@color/darkgray"
+                                android:text="Engine 3 Cyl- 1.2 liter"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content">
+                            </TextView>
+
+                        </LinearLayout>
+
+                        <ImageButton
+                            android:background="@color/white"
+                            android:src="@drawable/ic_baseline_delete_24"
+                            android:layout_marginLeft="50dp"
+                            android:layout_marginTop="10dp"
+                            android:layout_width="40dp"
+                            android:layout_height="80dp">
+                        </ImageButton>
+
+                    </LinearLayout>
+                </androidx.cardview.widget.CardView>
+
+                <androidx.cardview.widget.CardView
+                    android:layout_marginBottom="20dp"
+                    app:cardCornerRadius="20dp"
+                    android:background="@color/white"
+                    android:layout_marginLeft="30dp"
+                    android:layout_width="350dp"
+                    android:layout_height="100dp">
+                    <LinearLayout
+                        android:orientation="horizontal"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent">
+
+                        <ImageView
+                            android:layout_marginHorizontal="20dp"
+                            android:layout_marginTop="10dp"
+                            android:src="@drawable/renault_clio_2"
+                            android:layout_width="80dp"
+                            android:layout_height="80dp">
+
+                        </ImageView>
+
+                        <LinearLayout
+                            android:orientation="vertical"
+                            android:layout_width="wrap_content"
+                            android:layout_height="match_parent">
+
+                            <TextView
+                                android:textSize="16dp"
+                                android:textColor="@color/black"
+                                android:text="Clio 2"
+                                android:layout_marginTop="20dp"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content">
+                            </TextView>
+
+                            <TextView
+                                android:textColor="@color/blue"
+                                android:text="$200 /month"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content">
+                            </TextView>
+
+                            <TextView
+                                android:textColor="@color/darkgray"
+                                android:text="Engine 4 Cyl- 2.0 liter"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content">
+                            </TextView>
+
+                        </LinearLayout>
+
+                        <ImageButton
+                            android:background="@color/white"
+                            android:src="@drawable/ic_baseline_delete_24"
+                            android:layout_marginLeft="50dp"
+                            android:layout_marginTop="10dp"
+                            android:layout_width="40dp"
+                            android:layout_height="80dp">
+                        </ImageButton>
+
+                    </LinearLayout>
+                </androidx.cardview.widget.CardView>
+
+            </LinearLayout>
+
+
+
+        </ScrollView>
+
+        <com.google.android.material.bottomnavigation.BottomNavigationView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            app:menu="@menu/bottom_menu">
+        </com.google.android.material.bottomnavigation.BottomNavigationView>
+
+
+    </LinearLayout>
+
+</FrameLayout>

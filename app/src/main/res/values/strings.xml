@@ -1,0 +1,56 @@
+<resources>
+    <string name="app_name">Carage</string>
+    <!--page d'accueil-->
+    <string name="Home_page_title">Chercher votre voiture</string>
+    <string name="Home_page_title_section">Voitures disponibles</string>
+
+    <!--page Collection-->
+    <string name="collection_page_title"> Collection de nos voitures</string>
+
+    <!--page ajout voiture-->
+    <string name="add_new_car_page"> Ajouter voiture</string>
+    <string name="add_new_car_page_upload_button"> Charger image</string>
+    <string name="add_new_car_marque_input">@string/item_marque_car</string>
+    <string name="add_new_car_model_input">@string/item_new_car_model_input</string>
+    <string name="add_new_car_model_year_input">@string/item_new_car_model_year_input</string>
+    <string name="add_new_car_matricule_input">@string/item_new_car_matricule_input</string>
+    <string name="add_new_car_color_input">@string/item_new_car_color_input</string>
+    <string name="add_new_car_power_input">@string/item_new_car_power_input</string>
+    <string-array name="enery_array">
+        <item>disel</item>
+        <item>essence</item>
+        <item>electrique</item>
+    </string-array>
+    <string name="add_new_car_km_input">@string/item_new_car_km_input</string>
+    <string name="add_new_car_nb_place_input">@string/item_new_car_nb_place_input</string>
+
+    <!--fenetre popup details voiture -->
+    <string name="popup_marque_car"> Marque voiture</string>
+    <string name="popup_marque_car_des"> BMW</string>
+    <string name="popup_modele_car"> Modele voiture</string>
+    <string name="popup_modele_car_des"> serie 1</string>
+    <string name="popup_modele_annee_car"> Modele annnee voiture</string>
+    <string name="popup_modele_anne_car_des"> 2014</string>
+    <string name="popup_matricule_car"> Matricule voiture</string>
+    <string name="popupmatricule_car_des"> 187 TN 210</string>
+    <string name="popup_color_car"> Couleur voiture</string>
+    <string name="popup_color_car_des"> Blanc</string>
+    <string name="popup_km_car"> KM voiture</string>
+    <string name="popup_km_car_des"> 120 000</string>
+
+
+    <!--page de voitures personnalisés-->
+    <string name="item_marque_car"> Marque voiture</string>
+    <string name="item_new_car_model_input"> Modéle voiture</string>
+    <string name="item_new_car_model_year_input">Modele année voiture</string>
+    <string name="item_new_car_matricule_input"> Matricule voiture</string>
+    <string name="item_new_car_color_input"> Couleur voiture</string>
+    <string name="item_new_car_power_input"> Puissance voiture</string>
+    <string name="item_new_car_energy_input"> Carburant voiture</string>
+    <string name="item_new_car_km_input"> KM voiture</string>
+    <string name="item_new_car_nb_place_input"> Nombre de place de voiture</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+
+
+</resources>

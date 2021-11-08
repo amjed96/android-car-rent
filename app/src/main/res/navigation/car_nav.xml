@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/car_nav"
+    app:startDestination="@id/mainActivity2">
+
+    <activity
+        android:id="@+id/mainActivity2"
+        android:name="tn.esprit.myapplication.MainActivity2"
+        android:label="activity_main2"
+        tools:layout="@layout/activity_main2" />
+    <fragment
+        android:id="@+id/profile"
+        android:name="tn.esprit.myapplication.profile"
+        android:label="fragment_profile"
+        tools:layout="@layout/fragment_profile" />
+    <fragment
+        android:id="@+id/favorites"
+        android:name="tn.esprit.myapplication.favorites"
+        android:label="fragment_favorites"
+        tools:layout="@layout/fragment_favorites" />
+</navigation>
