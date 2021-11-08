@@ -1,5 +1,6 @@
 package tn.esprit.myapplication;
 
+import android.app.AlertDialog;
 import android.content.Context;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
@@ -54,8 +55,16 @@ public class UsersAdapter extends RecyclerView.Adapter<UsersAdapter.UsersViewHol
         holder.deleteBtn.setId(u.getId());
 
         holder.deleteBtn.setOnClickListener(view -> {
-            User user = mydb.userDAO().getUserById(holder.deleteBtn.getId());
-            mydb.userDAO().deleteUser(user);
+            AlertDialog.Builder builder = new AlertDialog.Builder(context);
+            builder.setTitle("Confirmation");
+            builder.setMessage("Are you sure to delete this user ?");
+            builder.setPositiveButton("Yes",null);
+            builder.setNegativeButton("No",null);
+
+            builder.show();
+
+            //User user = mydb.userDAO().getUserById(holder.deleteBtn.getId());
+            //mydb.userDAO().deleteUser(user);
         });
     }
 
@@ -63,6 +72,8 @@ public class UsersAdapter extends RecyclerView.Adapter<UsersAdapter.UsersViewHol
     public int getItemCount() {
         return users.size();
     }
+
+
 
     public class UsersViewHolder extends RecyclerView.ViewHolder {
 
