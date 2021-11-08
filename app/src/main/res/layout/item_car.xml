@@ -26,6 +26,7 @@
                 android:paddingHorizontal="20dp">
 
                 <TextView
+                    android:id="@+id/brandTv"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginBottom="-8dp"
@@ -35,6 +36,7 @@
                     android:textSize="30sp"></TextView>
 
                 <TextView
+                    android:id="@+id/editionTv"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginVertical="2dp"
@@ -56,6 +58,7 @@
                 android:padding="20dp">
 
                 <TextView
+                    android:id="@+id/priceTv"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginBottom="-8dp"
@@ -70,6 +73,7 @@
                     android:text="/month"></TextView>
 
                 <TextView
+                    android:id="@+id/engineTv"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="3-Cyl 1.2 liter"></TextView>
@@ -78,6 +82,7 @@
         </LinearLayout>
 
         <ImageView
+            android:id="@+id/carPicIV"
             android:layout_width="match_parent"
             android:layout_height="240dp"
             android:src="@drawable/citroen_c3">

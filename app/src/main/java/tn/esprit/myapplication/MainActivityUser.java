@@ -10,5 +10,7 @@ public class MainActivityUser extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main_user);
+
+        getSupportFragmentManager().beginTransaction().replace(R.id.fragHolder,new UserCarsFragment()).commit();
     }
 }

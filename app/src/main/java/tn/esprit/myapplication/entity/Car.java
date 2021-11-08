@@ -20,16 +20,10 @@ public class Car {
     private String engine;
     @ColumnInfo
     private int topSpeed;
+    @ColumnInfo.SQLiteTypeAffinity()
+    private byte[] carPic;
 
-    public Car(int id, String brand, String edition, String category, int price, String engine, int topSpeed) {
-        this.id = id;
-        this.brand = brand;
-        this.edition = edition;
-        this.category = category;
-        this.price = price;
-        this.engine = engine;
-        this.topSpeed = topSpeed;
-    }
+
 
     public int getId() {
         return id;
@@ -85,5 +79,13 @@ public class Car {
 
     public void setTopSpeed(int topSpeed) {
         this.topSpeed = topSpeed;
+    }
+
+    public byte[] getCarPic() {
+        return carPic;
+    }
+
+    public void setCarPic(byte[] carPic) {
+        this.carPic = carPic;
     }
 }
