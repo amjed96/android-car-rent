@@ -15,7 +15,7 @@
             android:layout_height="match_parent">
 
             <ImageView
-
+                android:id="@+id/catPicIV"
                 android:layout_width="match_parent"
                 android:layout_height="75dp"
                 app:srcCompat="@drawable/suv">
@@ -23,13 +23,16 @@
             </ImageView>
 
             <TextView
+                android:id="@+id/catNameTv"
                 android:textSize="16dp"
                 android:layout_gravity="center"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="SUV">
             </TextView>
+
             <TextView
+                android:id="@+id/catNumberTv"
                 android:textColor="@color/blue"
                 android:layout_gravity="center"
                 android:text="10"

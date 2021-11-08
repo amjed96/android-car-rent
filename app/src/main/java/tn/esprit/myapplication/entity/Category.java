@@ -10,11 +10,8 @@ public class Category {
     private int id;
     @ColumnInfo
     private String name;
-
-    public Category(int id, String name) {
-        this.id = id;
-        this.name = name;
-    }
+    @ColumnInfo.SQLiteTypeAffinity()
+    private byte[] catPic;
 
     public int getId() {
         return id;
@@ -30,5 +27,13 @@ public class Category {
 
     public void setName(String name) {
         this.name = name;
+    }
+
+    public byte[] getCatPic() {
+        return catPic;
+    }
+
+    public void setCatPic(byte[] catPic) {
+        this.catPic = catPic;
     }
 }
