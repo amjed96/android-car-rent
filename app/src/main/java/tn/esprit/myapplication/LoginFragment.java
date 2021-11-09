@@ -70,6 +70,7 @@ public class LoginFragment extends Fragment {
                     startActivity(intent);
                 } else {
                     Intent intent = new Intent(requireContext(), MainActivityUser.class);
+                    intent.putExtra("user",user);
                     startActivity(intent);
                 }
             } else {

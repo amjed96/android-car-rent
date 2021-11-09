@@ -25,4 +25,7 @@ public interface UserDAO {
 
     @Query("UPDATE user SET username = :username, email = :email, password = :pwd WHERE id =:id")
     void editUser(int id, String username, String email, String pwd);
+
+    @Query("INSERT INTO user (username,email,password,role) VALUES ('admin','admin@gmail.com','admin','admin')")
+    void insertAdmin();
 }

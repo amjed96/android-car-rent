@@ -15,6 +15,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.ImageView;
 import android.widget.Toast;
 
 import com.google.android.material.textfield.TextInputLayout;
@@ -27,6 +28,7 @@ import tn.esprit.myapplication.entity.User;
 
 public class UserProfileEditFragment extends Fragment {
 
+    ImageView profilePicIv;
     TextInputLayout usernameEditTIL;
     TextInputLayout emailEditTIL;
     TextInputLayout passwordEditTIL;
@@ -39,12 +41,12 @@ public class UserProfileEditFragment extends Fragment {
     private Uri imageFilePath;
     private Bitmap imageToStore;
 
-    public static UserProfileEditFragment newInstance(User user) {
+    public static UserProfileEditFragment newInstance(User u) {
 
         UserProfileEditFragment fragment = new UserProfileEditFragment();
         Bundle args = new Bundle();
 
-        args.putSerializable("user",user);
+        args.putSerializable("user",u);
 
         fragment.setArguments(args);
         return fragment;
@@ -64,19 +66,33 @@ public class UserProfileEditFragment extends Fragment {
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment_user_profile_edit, container, false);
 
-        usernameEditTIL = view.findViewById(R.id.usernameLoginTIL);
+        profilePicIv = view.findViewById(R.id.profilePicIv);
+        usernameEditTIL = view.findViewById(R.id.usernameEditTIL);
         emailEditTIL = view.findViewById(R.id.emailEditTIL);
         passwordEditTIL = view.findViewById(R.id.passwordEditTIL);
         saveEditBtn = view.findViewById(R.id.saveEditBtn);
 
         mydb = MyDatabase.getDatabase(requireContext());
 
+        /* */
+        //profilePicIv.setImageBitmap();
+
         usernameEditTIL.getEditText().setText(user.getUsername());
         emailEditTIL.getEditText().setText(user.getEmail());
         passwordEditTIL.getEditText().setText(user.getPassword());
 
+        profilePicIv.setOnClickListener(view1 -> {
+            selectImage(view);
+        });
+
         saveEditBtn.setOnClickListener(view1 -> {
-            /**/
+
+            user.setUsername(usernameEditTIL.getEditText().getText().toString());
+            user.setEmail(emailEditTIL.getEditText().getText().toString());
+            user.setPassword(passwordEditTIL.getEditText().getText().toString());
+
+            mydb.userDAO().editUser(user.getId(),user.getUsername(),user.getEmail(),user.getPassword());
+            requireActivity().getSupportFragmentManager().beginTransaction().replace(R.id.fragHolder,UserProfileFragment.newInstance(user)).commit();
         });
 
         return view;
@@ -100,7 +116,7 @@ public class UserProfileEditFragment extends Fragment {
         try{
             super.onActivityResult(requestCode, resultCode, data);
 
-            /*if(requestCode == PICK_IMAGE_REQUEST && resultCode == RESULT_OK && data != null && data.getData() != null) {
+            if(requestCode == PICK_IMAGE_REQUEST && resultCode == RESULT_OK && data != null && data.getData() != null) {
                 imageFilePath = data.getData();
                 imageToStore = MediaStore.Images.Media.getBitmap(requireContext().getContentResolver(),imageFilePath);
 
@@ -113,7 +129,7 @@ public class UserProfileEditFragment extends Fragment {
                 imageToBytes = byteArrayOutputStream.toByteArray();
 
                 user.setProfilePic(imageToBytes);
-            }*/
+            }
         }
         catch (Exception e) {
             Toast.makeText(requireContext(), e.getMessage(), Toast.LENGTH_SHORT).show();

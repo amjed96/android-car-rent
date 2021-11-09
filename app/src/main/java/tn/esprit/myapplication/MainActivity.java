@@ -23,7 +23,9 @@ public class MainActivity extends AppCompatActivity {
 
         mydb = MyDatabase.getDatabase(this);
 
-        //mydb.userDAO().insertAdmin();
+        User admin = new User();
+
+        mydb.userDAO().insertAdmin();
 
         getSupportFragmentManager().beginTransaction().replace(R.id.fragHolder,new LoginFragment()).commit();
     }

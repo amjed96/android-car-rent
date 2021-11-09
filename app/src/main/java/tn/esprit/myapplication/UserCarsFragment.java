@@ -16,6 +16,7 @@ import java.util.List;
 import tn.esprit.myapplication.database.MyDatabase;
 import tn.esprit.myapplication.entity.Car;
 import tn.esprit.myapplication.entity.Category;
+import tn.esprit.myapplication.entity.User;
 
 public class UserCarsFragment extends Fragment {
 
@@ -29,6 +30,17 @@ public class UserCarsFragment extends Fragment {
     List<Car> cars = new ArrayList<>();
 
     MyDatabase mydb;
+
+    public static UserCarsFragment newInstance(User user) {
+
+        UserCarsFragment fragment = new UserCarsFragment();
+        Bundle args = new Bundle();
+
+        args.putSerializable("user",user);
+
+        fragment.setArguments(args);
+        return fragment;
+    }
 
     @Override
     public void onCreate(Bundle savedInstanceState) {

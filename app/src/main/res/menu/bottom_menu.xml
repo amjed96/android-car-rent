@@ -6,11 +6,11 @@
         android:title="Profile"
         android:icon="@drawable/ic_baseline_person_24"/>
     <item
-        android:id="@+id/mainActivity2"
+        android:id="@+id/cars"
         android:title="Cars"
         android:icon="@drawable/ic_baseline_directions_car_24"/>
     <item
         android:id="@+id/favorites"
-        android:title="Favorites"
+        android:title="favorites"
         android:icon="@drawable/ic_baseline_star_24"/>
 </menu>

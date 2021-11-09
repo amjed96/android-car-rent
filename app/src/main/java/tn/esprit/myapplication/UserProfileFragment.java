@@ -29,9 +29,23 @@ public class UserProfileFragment extends Fragment {
 
     MyDatabase mydb;
 
+    public static UserProfileFragment newInstance(User user) {
+
+        UserProfileFragment fragment = new UserProfileFragment();
+        Bundle args = new Bundle();
+
+        args.putSerializable("user",user);
+
+        fragment.setArguments(args);
+        return fragment;
+    }
+
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        if(getArguments() != null) {
+            user = (User) getArguments().getSerializable("user");
+        }
     }
 
     @Override
@@ -45,15 +59,19 @@ public class UserProfileFragment extends Fragment {
         usernameTv1 = view.findViewById(R.id.usernameTv1);
         emailTv = view.findViewById(R.id.emailTv);
         passwordTv = view.findViewById(R.id.passwordTv);
+        editImgBtn = view.findViewById(R.id.editImgBtn);
 
         mydb = MyDatabase.getDatabase(requireContext());
-        user = mydb.userDAO().getUserById(1);/* HERE */
+        //user = mydb.userDAO().getUserById(1);/* HERE */
 
         byte[] imageBytes = user.getProfilePic();
 
-        Bitmap bitmap = BitmapFactory.decodeByteArray(imageBytes,0,imageBytes.length);
+        if(imageBytes != null) {
+            Bitmap bitmap = BitmapFactory.decodeByteArray(imageBytes,0,imageBytes.length);
+            profileImg.setImageBitmap(bitmap);
+        }
 
-        profileImg.setImageBitmap(bitmap);
+
         usernameTv.setText(user.getUsername());
         usernameTv1.setText(user.getUsername());
         emailTv.setText(user.getEmail());
