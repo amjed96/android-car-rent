@@ -23,7 +23,7 @@ public class UserCarsFragment extends Fragment {
     RecyclerView categoriesRv;
     RecyclerView carsRv;
 
-    CategoriesAdapter categoriesAdapter;
+    CategoriesAdapterUser categoriesAdapter;
     CarsAdapter carsAdapter;
 
     List<Category> categories = new ArrayList<>();
@@ -62,7 +62,7 @@ public class UserCarsFragment extends Fragment {
         categoriesRv = view.findViewById(R.id.categoriesRv);
         carsRv = view.findViewById(R.id.carsRv);
 
-        categoriesAdapter = new CategoriesAdapter(categories,requireContext());
+        categoriesAdapter = new CategoriesAdapterUser(categories,requireContext());
         carsAdapter = new CarsAdapter(cars,requireContext());
 
         categoriesRv.setAdapter(categoriesAdapter);

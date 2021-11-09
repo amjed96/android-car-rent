@@ -27,7 +27,7 @@
             android:id="@+id/categoriesRv"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:layout_marginTop="100dp"
+            android:layout_marginTop="130dp"
             android:orientation="vertical"
             app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
             tools:listitem="@layout/item_category_admin"></androidx.recyclerview.widget.RecyclerView>

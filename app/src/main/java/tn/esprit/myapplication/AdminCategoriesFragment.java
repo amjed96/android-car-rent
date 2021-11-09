@@ -48,7 +48,7 @@ public class AdminCategoriesFragment extends Fragment {
         categoriesRv.setAdapter(categoriesAdapter);
 
         addCategoryBtn.setOnClickListener(view1 -> {
-            /* Open add category fragment */
+            requireActivity().getSupportFragmentManager().beginTransaction().replace(R.id.fragHolder,new AddCategoryFragment()).commit();
         });
 
         return view;
