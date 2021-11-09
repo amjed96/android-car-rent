@@ -32,7 +32,7 @@ public class CategoriesAdapter extends RecyclerView.Adapter<CategoriesAdapter.Ca
     @NonNull
     @Override
     public CategoriesViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        View view = LayoutInflater.from(context).inflate(R.layout.item_category,parent,false);
+        View view = LayoutInflater.from(context).inflate(R.layout.item_category_admin,parent,false);
         return new CategoriesAdapter.CategoriesViewHolder(view);
     }
 
@@ -43,13 +43,14 @@ public class CategoriesAdapter extends RecyclerView.Adapter<CategoriesAdapter.Ca
         Category c = categories.get(position);
 
         holder.catNameTv.setText(c.getName());
-        holder.catNumberTv.setText("");
+        holder.catNumberTv.setText(c.getId());
 
         byte[] imageBytes = c.getCatPic();
 
-        Bitmap bitmap = BitmapFactory.decodeByteArray(imageBytes,0,imageBytes.length);
-
-        holder.catPicIV.setImageBitmap(bitmap);
+        if(imageBytes != null) {
+            Bitmap bitmap = BitmapFactory.decodeByteArray(imageBytes,0,imageBytes.length);
+            holder.catPicIV.setImageBitmap(bitmap);
+        }
     }
 
     @Override
@@ -64,9 +65,9 @@ public class CategoriesAdapter extends RecyclerView.Adapter<CategoriesAdapter.Ca
         public CategoriesViewHolder(@NonNull View itemView) {
             super(itemView);
 
-            catPicIV = itemView.findViewById(R.id.catPicIV);
-            catNameTv = itemView.findViewById(R.id.catNameTv);
-            catNumberTv = itemView.findViewById(R.id.catNumberTv);
+            catPicIV = itemView.findViewById(R.id.categoryImgview);
+            catNameTv = itemView.findViewById(R.id.categoryNameTv);
+            catNumberTv = itemView.findViewById(R.id.categoryIdTv);
         }
     }
 }

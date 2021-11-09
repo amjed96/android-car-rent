@@ -14,6 +14,8 @@
         <entry key="..\:/Users/ucer/AndroidStudioProjects/MyApplication/app/src/main/res/layout/activity_main_user.xml" value="0.1" />
         <entry key="..\:/Users/ucer/AndroidStudioProjects/MyApplication/app/src/main/res/layout/activity_users.xml" value="0.25" />
         <entry key="..\:/Users/ucer/AndroidStudioProjects/MyApplication/app/src/main/res/layout/cars.xml" value="0.33" />
+        <entry key="..\:/Users/ucer/AndroidStudioProjects/MyApplication/app/src/main/res/layout/fragment_admin_categories.xml" value="0.20416666666666666" />
+        <entry key="..\:/Users/ucer/AndroidStudioProjects/MyApplication/app/src/main/res/layout/fragment_admin_users.xml" value="0.292259083728278" />
         <entry key="..\:/Users/ucer/AndroidStudioProjects/MyApplication/app/src/main/res/layout/fragment_favorites.xml" value="0.25" />
         <entry key="..\:/Users/ucer/AndroidStudioProjects/MyApplication/app/src/main/res/layout/fragment_first.xml" value="0.20416666666666666" />
         <entry key="..\:/Users/ucer/AndroidStudioProjects/MyApplication/app/src/main/res/layout/fragment_login.xml" value="0.25" />
@@ -26,7 +28,8 @@
         <entry key="..\:/Users/ucer/AndroidStudioProjects/MyApplication/app/src/main/res/layout/fragment_user_profile_edit.xml" value="0.1" />
         <entry key="..\:/Users/ucer/AndroidStudioProjects/MyApplication/app/src/main/res/layout/item_car.xml" value="0.20416666666666666" />
         <entry key="..\:/Users/ucer/AndroidStudioProjects/MyApplication/app/src/main/res/layout/item_category.xml" value="0.20416666666666666" />
-        <entry key="..\:/Users/ucer/AndroidStudioProjects/MyApplication/app/src/main/res/layout/item_user.xml" value="0.22" />
+        <entry key="..\:/Users/ucer/AndroidStudioProjects/MyApplication/app/src/main/res/layout/item_category_admin.xml" value="0.25" />
+        <entry key="..\:/Users/ucer/AndroidStudioProjects/MyApplication/app/src/main/res/layout/item_user.xml" value="0.25" />
         <entry key="..\:/Users/ucer/AndroidStudioProjects/MyApplication/app/src/main/res/layout/keep_this.xml" value="0.20416666666666666" />
         <entry key="..\:/Users/ucer/AndroidStudioProjects/MyApplication/app/src/main/res/layout/login.xml" value="0.33" />
         <entry key="..\:/Users/ucer/AndroidStudioProjects/MyApplication/app/src/main/res/menu/admin_bottom_menu.xml" value="0.20416666666666666" />

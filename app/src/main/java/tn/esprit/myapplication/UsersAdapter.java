@@ -49,9 +49,11 @@ public class UsersAdapter extends RecyclerView.Adapter<UsersAdapter.UsersViewHol
 
         byte[] imageBytes = u.getProfilePic();
 
-        Bitmap bitmap = BitmapFactory.decodeByteArray(imageBytes,0,imageBytes.length);
+        if(imageBytes != null) {
+            Bitmap bitmap = BitmapFactory.decodeByteArray(imageBytes,0,imageBytes.length);
+            holder.profileImg.setImageBitmap(bitmap);
+        }
 
-        holder.profileImg.setImageBitmap(bitmap);
         holder.deleteBtn.setId(u.getId());
 
         holder.deleteBtn.setOnClickListener(view -> {
