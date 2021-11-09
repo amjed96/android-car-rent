@@ -19,5 +19,5 @@ public interface CarDAO {
     void deleteCar(Car car);
 
     @Query("SELECT * FROM car")
-    List<User> getAllCar();
+    List<Car> getAllCar();
 }

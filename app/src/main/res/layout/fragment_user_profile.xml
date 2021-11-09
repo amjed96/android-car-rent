@@ -11,12 +11,14 @@
             android:layout_height="match_parent">
 
             <ImageView
+                android:id="@+id/profileImg"
                 android:layout_width="match_parent"
                 android:layout_height="250dp"
                 android:scaleType="fitXY"
                 android:src="@drawable/profile2"></ImageView>
 
             <TextView
+                android:id="@+id/usernameTv1"
                 android:layout_marginTop="-50dp"
                 android:layout_marginLeft="50dp"
                 android:textSize="20dp"
@@ -28,6 +30,7 @@
             </TextView>
 
             <ImageButton
+                android:id="@+id/editImgBtn"
                 android:src="@drawable/ic_baseline_mode_edit_24"
                 android:layout_marginTop="-20dp"
                 android:background="@drawable/round_button"
@@ -48,27 +51,9 @@
             </TextView>
 
             <TextView
+                android:id="@+id/usernameTv"
                 android:textColor="@color/darkgray"
                 android:text="User96"
-                android:layout_marginLeft="50dp"
-                android:layout_width="300dp"
-                android:layout_height="wrap_content">
-            </TextView>
-
-            <TextView
-                android:textColor="@color/black"
-                android:textSize="20dp"
-                android:fontFamily="@font/poppins_bold"
-                android:layout_marginLeft="50dp"
-                android:text="Phone"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content">
-            </TextView>
-
-            <TextView
-                android:inputType="number"
-                android:textColor="@color/darkgray"
-                android:text="99999999"
                 android:layout_marginLeft="50dp"
                 android:layout_width="300dp"
                 android:layout_height="wrap_content">
@@ -85,26 +70,9 @@
             </TextView>
 
             <TextView
+                android:id="@+id/emailTv"
                 android:textColor="@color/darkgray"
                 android:text="User96@gmail.com"
-                android:layout_marginLeft="50dp"
-                android:layout_width="300dp"
-                android:layout_height="wrap_content">
-            </TextView>
-
-            <TextView
-                android:textColor="@color/black"
-                android:textSize="20dp"
-                android:fontFamily="@font/poppins_bold"
-                android:layout_marginLeft="50dp"
-                android:text="Adresse"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content">
-            </TextView>
-
-            <TextView
-                android:textColor="@color/darkgray"
-                android:text="User Avenue - User City - 0000"
                 android:layout_marginLeft="50dp"
                 android:layout_width="300dp"
                 android:layout_height="wrap_content">
@@ -121,6 +89,7 @@
             </TextView>
 
             <TextView
+                android:id="@+id/passwordTv"
                 android:inputType="textPassword"
                 android:textColor="@color/darkgray"
                 android:text="Password user"

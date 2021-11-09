@@ -1,47 +1,51 @@
 package tn.esprit.myapplication;
 
+import static android.app.Activity.RESULT_OK;
+
+import android.content.Intent;
+import android.graphics.Bitmap;
+import android.net.Uri;
 import android.os.Bundle;
 
+import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 
+import android.provider.MediaStore;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
+import android.widget.Toast;
 
-/**
- * A simple {@link Fragment} subclass.
- * Use the {@link UserProfileEditFragment#newInstance} factory method to
- * create an instance of this fragment.
- */
+import com.google.android.material.textfield.TextInputLayout;
+
+import java.io.ByteArrayOutputStream;
+
+import tn.esprit.myapplication.database.MyDatabase;
+import tn.esprit.myapplication.entity.User;
+
+
 public class UserProfileEditFragment extends Fragment {
 
-    // TODO: Rename parameter arguments, choose names that match
-    // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
-    private static final String ARG_PARAM1 = "param1";
-    private static final String ARG_PARAM2 = "param2";
+    TextInputLayout usernameEditTIL;
+    TextInputLayout emailEditTIL;
+    TextInputLayout passwordEditTIL;
+    Button saveEditBtn;
+    User user;
 
-    // TODO: Rename and change types of parameters
-    private String mParam1;
-    private String mParam2;
+    MyDatabase mydb;
 
-    public UserProfileEditFragment() {
-        // Required empty public constructor
-    }
+    private static final int PICK_IMAGE_REQUEST = 1;
+    private Uri imageFilePath;
+    private Bitmap imageToStore;
 
-    /**
-     * Use this factory method to create a new instance of
-     * this fragment using the provided parameters.
-     *
-     * @param param1 Parameter 1.
-     * @param param2 Parameter 2.
-     * @return A new instance of fragment UserProfileEditFragment.
-     */
-    // TODO: Rename and change types and number of parameters
-    public static UserProfileEditFragment newInstance(String param1, String param2) {
+    public static UserProfileEditFragment newInstance(User user) {
+
         UserProfileEditFragment fragment = new UserProfileEditFragment();
         Bundle args = new Bundle();
-        args.putString(ARG_PARAM1, param1);
-        args.putString(ARG_PARAM2, param2);
+
+        args.putSerializable("user",user);
+
         fragment.setArguments(args);
         return fragment;
     }
@@ -49,9 +53,8 @@ public class UserProfileEditFragment extends Fragment {
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        if (getArguments() != null) {
-            mParam1 = getArguments().getString(ARG_PARAM1);
-            mParam2 = getArguments().getString(ARG_PARAM2);
+        if(getArguments() != null) {
+            user = (User) getArguments().getSerializable("user");
         }
     }
 
@@ -59,6 +62,61 @@ public class UserProfileEditFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_user_profile_edit, container, false);
+        View view = inflater.inflate(R.layout.fragment_user_profile_edit, container, false);
+
+        usernameEditTIL = view.findViewById(R.id.usernameLoginTIL);
+        emailEditTIL = view.findViewById(R.id.emailEditTIL);
+        passwordEditTIL = view.findViewById(R.id.passwordEditTIL);
+        saveEditBtn = view.findViewById(R.id.saveEditBtn);
+
+        mydb = MyDatabase.getDatabase(requireContext());
+
+        usernameEditTIL.getEditText().setText(user.getUsername());
+        emailEditTIL.getEditText().setText(user.getEmail());
+        passwordEditTIL.getEditText().setText(user.getPassword());
+
+        saveEditBtn.setOnClickListener(view1 -> {
+            /**/
+        });
+
+        return view;
+    }
+
+    public void selectImage(View objectView) {
+        try {
+            Intent intent = new Intent();
+            intent.setType("image/*");
+
+            intent.setAction(intent.ACTION_GET_CONTENT);
+            startActivityForResult(intent,PICK_IMAGE_REQUEST);
+        }
+        catch (Exception e){
+            Toast.makeText(requireContext(), e.getMessage(), Toast.LENGTH_SHORT).show();
+        }
+    }
+
+    @Override
+    public void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
+        try{
+            super.onActivityResult(requestCode, resultCode, data);
+
+            /*if(requestCode == PICK_IMAGE_REQUEST && resultCode == RESULT_OK && data != null && data.getData() != null) {
+                imageFilePath = data.getData();
+                imageToStore = MediaStore.Images.Media.getBitmap(requireContext().getContentResolver(),imageFilePath);
+
+                profilePicIv.setImageBitmap(imageToStore);
+                //user.setProfilePic(imageToStore);
+                ByteArrayOutputStream byteArrayOutputStream = new ByteArrayOutputStream();
+                byte[] imageToBytes;
+
+                imageToStore.compress(Bitmap.CompressFormat.JPEG,100,byteArrayOutputStream);
+                imageToBytes = byteArrayOutputStream.toByteArray();
+
+                user.setProfilePic(imageToBytes);
+            }*/
+        }
+        catch (Exception e) {
+            Toast.makeText(requireContext(), e.getMessage(), Toast.LENGTH_SHORT).show();
+        }
     }
 }

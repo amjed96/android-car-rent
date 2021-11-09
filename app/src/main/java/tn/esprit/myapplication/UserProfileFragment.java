@@ -1,5 +1,7 @@
 package tn.esprit.myapplication;
 
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
@@ -7,58 +9,60 @@ import androidx.fragment.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageButton;
+import android.widget.ImageView;
+import android.widget.TextView;
 
-/**
- * A simple {@link Fragment} subclass.
- * Use the {@link UserProfileFragment#newInstance} factory method to
- * create an instance of this fragment.
- */
+import tn.esprit.myapplication.database.MyDatabase;
+import tn.esprit.myapplication.entity.User;
+
 public class UserProfileFragment extends Fragment {
 
-    // TODO: Rename parameter arguments, choose names that match
-    // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
-    private static final String ARG_PARAM1 = "param1";
-    private static final String ARG_PARAM2 = "param2";
+    ImageView profileImg;
+    TextView usernameTv;
+    TextView usernameTv1;
+    TextView emailTv;
+    TextView passwordTv;
+    ImageButton editImgBtn;
 
-    // TODO: Rename and change types of parameters
-    private String mParam1;
-    private String mParam2;
+    User user = new User();
 
-    public UserProfileFragment() {
-        // Required empty public constructor
-    }
-
-    /**
-     * Use this factory method to create a new instance of
-     * this fragment using the provided parameters.
-     *
-     * @param param1 Parameter 1.
-     * @param param2 Parameter 2.
-     * @return A new instance of fragment UserProfileFragment.
-     */
-    // TODO: Rename and change types and number of parameters
-    public static UserProfileFragment newInstance(String param1, String param2) {
-        UserProfileFragment fragment = new UserProfileFragment();
-        Bundle args = new Bundle();
-        args.putString(ARG_PARAM1, param1);
-        args.putString(ARG_PARAM2, param2);
-        fragment.setArguments(args);
-        return fragment;
-    }
+    MyDatabase mydb;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        if (getArguments() != null) {
-            mParam1 = getArguments().getString(ARG_PARAM1);
-            mParam2 = getArguments().getString(ARG_PARAM2);
-        }
     }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_user_profile, container, false);
+        View view = inflater.inflate(R.layout.fragment_user_profile, container, false);
+
+        profileImg = view.findViewById(R.id.profileImg);
+        usernameTv = view.findViewById(R.id.usernameTv);
+        usernameTv1 = view.findViewById(R.id.usernameTv1);
+        emailTv = view.findViewById(R.id.emailTv);
+        passwordTv = view.findViewById(R.id.passwordTv);
+
+        mydb = MyDatabase.getDatabase(requireContext());
+        user = mydb.userDAO().getUserById(1);/* HERE */
+
+        byte[] imageBytes = user.getProfilePic();
+
+        Bitmap bitmap = BitmapFactory.decodeByteArray(imageBytes,0,imageBytes.length);
+
+        profileImg.setImageBitmap(bitmap);
+        usernameTv.setText(user.getUsername());
+        usernameTv1.setText(user.getUsername());
+        emailTv.setText(user.getEmail());
+        passwordTv.setText(user.getPassword());
+
+        editImgBtn.setOnClickListener(view1 -> {
+            requireActivity().getSupportFragmentManager().beginTransaction().replace(R.id.fragHolder,UserProfileEditFragment.newInstance(user)).commit();
+        });
+
+        return view;
     }
 }

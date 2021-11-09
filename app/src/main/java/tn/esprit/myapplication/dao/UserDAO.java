@@ -22,4 +22,7 @@ public interface UserDAO {
 
     @Query("SELECT * FROM user WHERE id = :id")
     User getUserById(int id);
+
+    @Query("UPDATE user SET username = :username, email = :email, password = :pwd WHERE id =:id")
+    void editUser(int id, String username, String email, String pwd);
 }

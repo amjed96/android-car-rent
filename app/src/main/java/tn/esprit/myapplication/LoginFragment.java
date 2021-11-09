@@ -54,17 +54,24 @@ public class LoginFragment extends Fragment {
             users = mydb.userDAO().getAllUser();
 
             boolean exist = false;
+            User user = new User();
 
             for(User u: users){
                 if(u.getUsername().equals(usernameLoginTIL.getEditText().getText().toString()) && (u.getPassword().equals(passwordLoginTIL.getEditText().getText().toString()))){
                     exist = true;
+                    user = u;
                     break;
                 }
             }
             if(exist) {
                 Toast.makeText(requireContext(),"Welcome back !",Toast.LENGTH_SHORT).show();
-                Intent intent = new Intent(requireContext(),UsersActivity.class);
-                startActivity(intent);
+                if(user.getRole().equals("admin")) {
+                    Intent intent = new Intent(requireContext(),MainActivityAdmin.class);
+                    startActivity(intent);
+                } else {
+                    Intent intent = new Intent(requireContext(), MainActivityUser.class);
+                    startActivity(intent);
+                }
             } else {
                 Toast.makeText(requireContext(),"Check your credentials !",Toast.LENGTH_SHORT).show();
             }

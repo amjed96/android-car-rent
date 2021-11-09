@@ -19,5 +19,5 @@ public interface CategoryDAO {
     void deleteCategory(Category category);
 
     @Query("SELECT * FROM category")
-    List<User> getAllCategory();
+    List<Category> getAllCategory();
 }
