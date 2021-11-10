@@ -14,7 +14,9 @@
         <entry key="..\:/Users/ucer/AndroidStudioProjects/MyApplication/app/src/main/res/layout/activity_main_user.xml" value="0.1" />
         <entry key="..\:/Users/ucer/AndroidStudioProjects/MyApplication/app/src/main/res/layout/activity_users.xml" value="0.25" />
         <entry key="..\:/Users/ucer/AndroidStudioProjects/MyApplication/app/src/main/res/layout/cars.xml" value="0.33" />
+        <entry key="..\:/Users/ucer/AndroidStudioProjects/MyApplication/app/src/main/res/layout/fragment_add_car.xml" value="0.22" />
         <entry key="..\:/Users/ucer/AndroidStudioProjects/MyApplication/app/src/main/res/layout/fragment_add_category.xml" value="0.25" />
+        <entry key="..\:/Users/ucer/AndroidStudioProjects/MyApplication/app/src/main/res/layout/fragment_admin_cars.xml" value="0.18" />
         <entry key="..\:/Users/ucer/AndroidStudioProjects/MyApplication/app/src/main/res/layout/fragment_admin_categories.xml" value="0.20416666666666666" />
         <entry key="..\:/Users/ucer/AndroidStudioProjects/MyApplication/app/src/main/res/layout/fragment_admin_users.xml" value="0.292259083728278" />
         <entry key="..\:/Users/ucer/AndroidStudioProjects/MyApplication/app/src/main/res/layout/fragment_favorites.xml" value="0.25" />

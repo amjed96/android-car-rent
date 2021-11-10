@@ -1,64 +1,127 @@
 package tn.esprit.myapplication;
 
+import static android.app.Activity.RESULT_OK;
+
+import android.content.Intent;
+import android.graphics.Bitmap;
+import android.net.Uri;
 import android.os.Bundle;
 
+import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 
+import android.provider.MediaStore;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
+import android.widget.ImageView;
+import android.widget.Toast;
 
-/**
- * A simple {@link Fragment} subclass.
- * Use the {@link AddCarFragment#newInstance} factory method to
- * create an instance of this fragment.
- */
+import com.google.android.material.textfield.TextInputLayout;
+
+import java.io.ByteArrayOutputStream;
+
+import tn.esprit.myapplication.database.MyDatabase;
+import tn.esprit.myapplication.entity.Car;
+
 public class AddCarFragment extends Fragment {
 
-    // TODO: Rename parameter arguments, choose names that match
-    // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
-    private static final String ARG_PARAM1 = "param1";
-    private static final String ARG_PARAM2 = "param2";
+    ImageView carPicIv;
+    Button addPicBtn;
+    Button addCarBtn;
+    TextInputLayout carBrandTIL;
+    TextInputLayout carEditionTIL;
+    TextInputLayout carCategoryTIL;
+    TextInputLayout carPriceTIL;
+    TextInputLayout carEngineTIL;
+    TextInputLayout carTopSpeedTIL;
 
-    // TODO: Rename and change types of parameters
-    private String mParam1;
-    private String mParam2;
+    Car car = new Car();
 
-    public AddCarFragment() {
-        // Required empty public constructor
-    }
+    MyDatabase mydb;
 
-    /**
-     * Use this factory method to create a new instance of
-     * this fragment using the provided parameters.
-     *
-     * @param param1 Parameter 1.
-     * @param param2 Parameter 2.
-     * @return A new instance of fragment AddCarFragment.
-     */
-    // TODO: Rename and change types and number of parameters
-    public static AddCarFragment newInstance(String param1, String param2) {
-        AddCarFragment fragment = new AddCarFragment();
-        Bundle args = new Bundle();
-        args.putString(ARG_PARAM1, param1);
-        args.putString(ARG_PARAM2, param2);
-        fragment.setArguments(args);
-        return fragment;
-    }
+    private static final int PICK_IMAGE_REQUEST = 1;
+    private Uri imageFilePath;
+    private Bitmap imageToStore;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        if (getArguments() != null) {
-            mParam1 = getArguments().getString(ARG_PARAM1);
-            mParam2 = getArguments().getString(ARG_PARAM2);
-        }
+
     }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_add_car, container, false);
+        View view = inflater.inflate(R.layout.fragment_add_car, container, false);
+
+        addPicBtn = view.findViewById(R.id.addPicBtn);
+        addCarBtn = view.findViewById(R.id.addCarBtn);
+        carBrandTIL = view.findViewById(R.id.carBrandTIL);
+        carEditionTIL = view.findViewById(R.id.carEditionTIL);
+        carCategoryTIL = view.findViewById(R.id.carCategoryTIL);
+        carPriceTIL = view.findViewById(R.id.carPriceTIL);
+        carEngineTIL = view.findViewById(R.id.carEngineTIL);
+        carTopSpeedTIL = view.findViewById(R.id.carTopSpeedTIL);
+
+        mydb = MyDatabase.getDatabase(requireContext());
+
+        addPicBtn.setOnClickListener(view1 -> {
+            selectImage(view);/**/
+        });
+
+        addCarBtn.setOnClickListener(view1 -> {
+            car.setBrand(carBrandTIL.getEditText().getText().toString());
+            car.setEdition(carEditionTIL.getEditText().getText().toString());
+            car.setCategory(carCategoryTIL.getEditText().getText().toString());
+            car.setPrice(Integer.valueOf(carPriceTIL.getEditText().getText().toString()));
+            car.setEngine(carEngineTIL.getEditText().getText().toString());
+            car.setTopSpeed(Integer.valueOf(carTopSpeedTIL.getEditText().getText().toString()));
+
+            mydb.carDAO().insertCar(car);
+            Toast.makeText(requireContext(),"Car added successfully !",Toast.LENGTH_SHORT);
+        });
+
+        return view;
+    }
+
+    public void selectImage(View objectView) {
+        try {
+            Intent intent = new Intent();
+            intent.setType("image/*");
+
+            intent.setAction(intent.ACTION_GET_CONTENT);
+            startActivityForResult(intent,PICK_IMAGE_REQUEST);
+        }
+        catch (Exception e){
+            Toast.makeText(requireContext(), e.getMessage(), Toast.LENGTH_SHORT).show();
+        }
+    }
+
+    @Override
+    public void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
+        try {
+            super.onActivityResult(requestCode, resultCode, data);
+
+            if(requestCode == PICK_IMAGE_REQUEST && resultCode == RESULT_OK && data != null && data.getData() != null) {
+                imageFilePath = data.getData();
+                imageToStore = MediaStore.Images.Media.getBitmap(requireContext().getContentResolver(),imageFilePath);
+
+                carPicIv.setImageBitmap(imageToStore);
+                //user.setProfilePic(imageToStore);
+                ByteArrayOutputStream byteArrayOutputStream = new ByteArrayOutputStream();
+                byte[] imageToBytes;
+
+                imageToStore.compress(Bitmap.CompressFormat.JPEG,100,byteArrayOutputStream);
+                imageToBytes = byteArrayOutputStream.toByteArray();
+
+                car.setCarPic(imageToBytes);
+            }
+        }
+        catch (Exception e) {
+            Toast.makeText(requireContext(), e.getMessage(), Toast.LENGTH_SHORT).show();
+        }
     }
 }

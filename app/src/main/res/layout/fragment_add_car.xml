@@ -13,6 +13,7 @@
 
         <ImageView
             android:id="@+id/carPicIv"
+            android:src="@drawable/cars"
             android:layout_width="match_parent"
             android:layout_height="250dp"/>
 

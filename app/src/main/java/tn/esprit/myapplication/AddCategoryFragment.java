@@ -60,7 +60,7 @@ public class AddCategoryFragment extends Fragment {
         mydb = MyDatabase.getDatabase(requireContext());
 
         addPicBtn.setOnClickListener(view1 -> {
-            selectImage(view);
+            selectImage(view);/**/
         });
 
         addCatBtn.setOnClickListener(view1 -> {

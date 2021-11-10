@@ -36,7 +36,7 @@ public class MainActivityAdmin extends AppCompatActivity {
                         selectedFragment = new AdminCategoriesFragment();
                         break;
                     case R.id.cars:
-                        selectedFragment = new AdminUsersFragment();
+                        selectedFragment = new AdminCarsFragment();
                         break;
                     case R.id.complaints:
                         selectedFragment = new AdminUsersFragment();

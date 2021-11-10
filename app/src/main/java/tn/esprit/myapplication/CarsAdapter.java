@@ -43,14 +43,15 @@ public class CarsAdapter extends RecyclerView.Adapter<CarsAdapter.CarsViewHolder
 
         holder.brandTv.setText(c.getBrand());
         holder.editionTv.setText(c.getEdition());
-        holder.priceTv.setText(c.getPrice());
+        holder.priceTv.setText(Integer.toString(c.getPrice()));
         holder.engineTv.setText(c.getEngine());
 
         byte[] imageBytes = c.getCarPic();
 
-        Bitmap bitmap = BitmapFactory.decodeByteArray(imageBytes,0,imageBytes.length);
-
-        holder.carPicIV.setImageBitmap(bitmap);
+        if(imageBytes != null) {
+            Bitmap bitmap = BitmapFactory.decodeByteArray(imageBytes,0,imageBytes.length);
+            holder.carPicIV.setImageBitmap(bitmap);
+        }
     }
 
     @Override
