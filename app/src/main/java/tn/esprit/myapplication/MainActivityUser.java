@@ -35,10 +35,10 @@ public class MainActivityUser extends AppCompatActivity {
                         selectedFragment = UserProfileFragment.newInstance(user);
                         break;
                     case R.id.cars:
-                        selectedFragment = new UserCarsFragment();
+                        selectedFragment = UserCarsFragment.newInstance(user);
                         break;
                     case R.id.favorites:
-                        selectedFragment = new UserCarsFragment();/* HERE */
+                        selectedFragment = UserFavoritesFragment.newInstance(user);/* HERE */
                         break;
                 }
                 getSupportFragmentManager().beginTransaction().replace(R.id.fragHolder,selectedFragment).commit();
@@ -47,6 +47,6 @@ public class MainActivityUser extends AppCompatActivity {
         });
         //navBar.setOnNavigationItemSelectedListener(navListener);
 
-        getSupportFragmentManager().beginTransaction().replace(R.id.fragHolder,new UserCarsFragment()).commit();
+        getSupportFragmentManager().beginTransaction().replace(R.id.fragHolder,UserCarsFragment.newInstance(user)).commit();
     }
 }

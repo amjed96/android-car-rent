@@ -20,10 +20,6 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import java.io.ByteArrayOutputStream;
-import java.io.InputStream;
-import java.io.OutputStream;
-import java.sql.Blob;
-import java.sql.SQLException;
 
 import tn.esprit.myapplication.database.MyDatabase;
 import tn.esprit.myapplication.entity.User;

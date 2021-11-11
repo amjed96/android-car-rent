@@ -29,6 +29,8 @@ public class UserCarsFragment extends Fragment {
     List<Category> categories = new ArrayList<>();
     List<Car> cars = new ArrayList<>();
 
+    User user = new User();
+
     MyDatabase mydb;
 
     public static UserCarsFragment newInstance(User user) {
@@ -45,7 +47,9 @@ public class UserCarsFragment extends Fragment {
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-
+        if(getArguments() != null) {
+            user = (User) getArguments().getSerializable("user");
+        }
     }
 
     @Override
@@ -64,6 +68,25 @@ public class UserCarsFragment extends Fragment {
 
         categoriesAdapter = new CategoriesAdapterUser(categories,requireContext());
         carsAdapter = new CarsAdapter(cars,requireContext());
+
+        /*categoriesAdapter.setOnItemClickListener(new CategoriesAdapterUser.OnItemClicklistener() {
+            @Override
+            public void onItemClick(int position) {
+                cars = mydb.carDAO().getCarsByCategory(categories.get(position).getName());
+                carsAdapter = new CarsAdapter(cars,requireContext());
+                carsAdapter.notifyDataSetChanged();
+                carsRv.setAdapter(carsAdapter);
+            }
+        });*/
+
+        carsAdapter.setOnClickListener(new CarsAdapter.OnItemClickListener() {
+            @Override
+            public void onItemClick(int position) {
+                Car car = new Car();
+                car = cars.get(position);
+                requireActivity().getSupportFragmentManager().beginTransaction().replace(R.id.fragHolder,CarDetailsFragment.newInstance(car,user)).commit();
+            }
+        });
 
         categoriesRv.setAdapter(categoriesAdapter);
         carsRv.setAdapter(carsAdapter);

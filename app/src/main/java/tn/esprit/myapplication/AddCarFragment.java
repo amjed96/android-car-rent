@@ -14,13 +14,17 @@ import android.provider.MediaStore;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.ImageView;
+import android.widget.Spinner;
 import android.widget.Toast;
 
 import com.google.android.material.textfield.TextInputLayout;
 
 import java.io.ByteArrayOutputStream;
+import java.util.ArrayList;
+import java.util.List;
 
 import tn.esprit.myapplication.database.MyDatabase;
 import tn.esprit.myapplication.entity.Car;
@@ -32,10 +36,12 @@ public class AddCarFragment extends Fragment {
     Button addCarBtn;
     TextInputLayout carBrandTIL;
     TextInputLayout carEditionTIL;
-    TextInputLayout carCategoryTIL;
+
     TextInputLayout carPriceTIL;
     TextInputLayout carEngineTIL;
     TextInputLayout carTopSpeedTIL;
+
+    Spinner spinnerCategory;
 
     Car car = new Car();
 
@@ -61,12 +67,18 @@ public class AddCarFragment extends Fragment {
         addCarBtn = view.findViewById(R.id.addCarBtn);
         carBrandTIL = view.findViewById(R.id.carBrandTIL);
         carEditionTIL = view.findViewById(R.id.carEditionTIL);
-        carCategoryTIL = view.findViewById(R.id.carCategoryTIL);
+
         carPriceTIL = view.findViewById(R.id.carPriceTIL);
         carEngineTIL = view.findViewById(R.id.carEngineTIL);
         carTopSpeedTIL = view.findViewById(R.id.carTopSpeedTIL);
 
         mydb = MyDatabase.getDatabase(requireContext());
+
+        List<String> categories = mydb.categoryDAO().getCategoryNames();
+        spinnerCategory = view.findViewById(R.id.spinnerCategory);
+
+        ArrayAdapter<String> adapter = new ArrayAdapter<String>(requireContext(),R.layout.spinner_layout,R.id.text,categories);
+        spinnerCategory.setAdapter(adapter);
 
         addPicBtn.setOnClickListener(view1 -> {
             selectImage(view);/**/
@@ -75,11 +87,11 @@ public class AddCarFragment extends Fragment {
         addCarBtn.setOnClickListener(view1 -> {
             car.setBrand(carBrandTIL.getEditText().getText().toString());
             car.setEdition(carEditionTIL.getEditText().getText().toString());
-            car.setCategory(carCategoryTIL.getEditText().getText().toString());
+            car.setCategory("");
             car.setPrice(Integer.valueOf(carPriceTIL.getEditText().getText().toString()));
             car.setEngine(carEngineTIL.getEditText().getText().toString());
             car.setTopSpeed(Integer.valueOf(carTopSpeedTIL.getEditText().getText().toString()));
-
+            car.setCategory(spinnerCategory.getSelectedItem().toString());
             mydb.carDAO().insertCar(car);
             Toast.makeText(requireContext(),"Car added successfully !",Toast.LENGTH_SHORT);
         });

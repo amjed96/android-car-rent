@@ -7,6 +7,7 @@ import android.graphics.BitmapFactory;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
 import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.TextView;
@@ -24,6 +25,13 @@ public class UsersAdapter extends RecyclerView.Adapter<UsersAdapter.UsersViewHol
     List<User> users;
     Context context;
 
+    public interface OnItemClickListener {
+        void onItemClick(int position);
+        void onDeleteClick(int position);
+    }
+
+    OnItemClickListener mListener;
+
     MyDatabase mydb;
 
     public UsersAdapter(List<User> users, Context context) {
@@ -35,7 +43,7 @@ public class UsersAdapter extends RecyclerView.Adapter<UsersAdapter.UsersViewHol
     @Override
     public UsersViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         View view = LayoutInflater.from(context).inflate(R.layout.item_user,parent,false);
-        return new UsersViewHolder(view);
+        return new UsersViewHolder(view,mListener);
     }
 
     @Override
@@ -54,9 +62,7 @@ public class UsersAdapter extends RecyclerView.Adapter<UsersAdapter.UsersViewHol
             holder.profileImg.setImageBitmap(bitmap);
         }
 
-        holder.deleteBtn.setId(u.getId());
-
-        holder.deleteBtn.setOnClickListener(view -> {
+        /*holder.deleteBtn.setOnClickListener(view -> {
             AlertDialog.Builder builder = new AlertDialog.Builder(context);
             builder.setTitle("Confirmation");
             builder.setMessage("Are you sure to delete this user ?");
@@ -65,9 +71,7 @@ public class UsersAdapter extends RecyclerView.Adapter<UsersAdapter.UsersViewHol
 
             builder.show();
 
-            //User user = mydb.userDAO().getUserById(holder.deleteBtn.getId());
-            //mydb.userDAO().deleteUser(user);
-        });
+        });*/
     }
 
     @Override
@@ -75,7 +79,9 @@ public class UsersAdapter extends RecyclerView.Adapter<UsersAdapter.UsersViewHol
         return users.size();
     }
 
-
+    public void setOnItemClickListener(OnItemClickListener listener) {
+        mListener = listener;
+    }
 
     public class UsersViewHolder extends RecyclerView.ViewHolder {
 
@@ -84,13 +90,40 @@ public class UsersAdapter extends RecyclerView.Adapter<UsersAdapter.UsersViewHol
         TextView emailTv;
         ImageButton deleteBtn;
 
-        public UsersViewHolder(@NonNull View itemView) {
+        public UsersViewHolder(@NonNull View itemView, final OnItemClickListener listener) {
             super(itemView);
             
             profileImg = itemView.findViewById(R.id.profileImgview);
             usernameTv = itemView.findViewById(R.id.usernameTv);
             emailTv = itemView.findViewById(R.id.emailTv);
             deleteBtn = itemView.findViewById(R.id.deleteBtn);
+
+            itemView.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    if(listener != null) {
+                        int position = getAdapterPosition();
+                        if(position != RecyclerView.NO_POSITION) {
+
+                        }
+                    }
+                }
+            });
+            
+            deleteBtn.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    if(listener != null) {
+                        int position = getAdapterPosition();
+                        if(position != RecyclerView.NO_POSITION) {
+                            listener.onDeleteClick(position);
+                            users = mydb.userDAO().getAllUser();
+                            notifyItemRemoved(position);
+                        }
+                    }
+
+                }
+            });
         }
     }
 }

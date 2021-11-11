@@ -14,18 +14,10 @@ import tn.esprit.myapplication.entity.User;
 
 public class MainActivity extends AppCompatActivity {
 
-    MyDatabase mydb;
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-
-        mydb = MyDatabase.getDatabase(this);
-
-        User admin = new User();
-
-        mydb.userDAO().insertAdmin();
 
         getSupportFragmentManager().beginTransaction().replace(R.id.fragHolder,new LoginFragment()).commit();
     }

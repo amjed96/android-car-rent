@@ -36,7 +36,7 @@ public class AddCategoryFragment extends Fragment {
 
     MyDatabase mydb;
 
-    private static final int PICK_IMAGE_REQUEST = 1;
+    private static final int PICK_IMAGE_REQUEST = 2;
     private Uri imageFilePath;
     private Bitmap imageToStore;
 
@@ -56,6 +56,7 @@ public class AddCategoryFragment extends Fragment {
 
         addPicBtn = view.findViewById(R.id.addPicBtn);
         addCatBtn = view.findViewById(R.id.addCatBtn);
+        catPicIv = view.findViewById(R.id.catPicIV);
 
         mydb = MyDatabase.getDatabase(requireContext());
 
@@ -107,6 +108,7 @@ public class AddCategoryFragment extends Fragment {
         }
         catch (Exception e) {
             Toast.makeText(requireContext(), e.getMessage(), Toast.LENGTH_SHORT).show();
+            System.out.println(e.getMessage());
         }
     }
 }

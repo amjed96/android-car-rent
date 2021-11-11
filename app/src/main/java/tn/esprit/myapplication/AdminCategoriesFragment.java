@@ -45,6 +45,33 @@ public class AdminCategoriesFragment extends Fragment {
         addCategoryBtn = view.findViewById(R.id.addCategoryBtn);
 
         categoriesAdapter = new CategoriesAdapter(categories,requireContext());
+
+        categoriesAdapter.setOnItemClickListener(new CategoriesAdapter.OnItemClickListener() {
+            @Override
+            public void onItemClick(int position) {
+
+            }
+
+            @Override
+            public void onDeleteClick(int position) {
+                Category category = new Category();
+                int id = categories.get(position).getId();
+                category.setId(id);
+
+                /*AlertDialog.Builder builder = new AlertDialog.Builder(context);
+                builder.setTitle("Confirmation");
+                builder.setMessage("Are you sure to delete this category ?");
+                builder.setPositiveButton("Yes",null);
+                builder.setNegativeButton("No",null);
+
+                builder.show();*/
+
+                mydb.categoryDAO().deleteCategory(category);
+
+            }
+        });
+
+
         categoriesRv.setAdapter(categoriesAdapter);
 
         addCategoryBtn.setOnClickListener(view1 -> {

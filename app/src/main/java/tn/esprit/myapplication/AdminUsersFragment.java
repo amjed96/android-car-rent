@@ -44,6 +44,24 @@ public class AdminUsersFragment extends Fragment {
         //deleteUser = findViewById(R.id.deleteBtn);
 
         usersAdapter = new UsersAdapter(users,requireContext());
+
+        usersAdapter.setOnItemClickListener(new UsersAdapter.OnItemClickListener() {
+            @Override
+            public void onItemClick(int position) {
+
+            }
+
+            @Override
+            public void onDeleteClick(int position) {
+                User user = new User();
+                int id = users.get(position).getId();
+                user.setId(id);
+
+                mydb.userDAO().deleteUser(user);
+
+            }
+        });
+
         usersRv.setAdapter(usersAdapter);
 
         return view;

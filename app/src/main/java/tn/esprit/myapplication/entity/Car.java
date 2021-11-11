@@ -4,8 +4,10 @@ import androidx.room.ColumnInfo;
 import androidx.room.Entity;
 import androidx.room.PrimaryKey;
 
+import java.io.Serializable;
+
 @Entity
-public class Car {
+public class Car implements Serializable {
     @PrimaryKey(autoGenerate = true)
     private int id;
     @ColumnInfo
@@ -22,6 +24,8 @@ public class Car {
     private int topSpeed;
     @ColumnInfo.SQLiteTypeAffinity()
     private byte[] carPic;
+    @ColumnInfo
+    private int userRent;
 
 
 
@@ -87,5 +91,13 @@ public class Car {
 
     public void setCarPic(byte[] carPic) {
         this.carPic = carPic;
+    }
+
+    public int getUserRent() {
+        return userRent;
+    }
+
+    public void setUserRent(int userRent) {
+        this.userRent = userRent;
     }
 }

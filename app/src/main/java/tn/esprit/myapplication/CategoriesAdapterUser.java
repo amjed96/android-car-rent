@@ -22,6 +22,12 @@ public class CategoriesAdapterUser extends RecyclerView.Adapter<CategoriesAdapte
     List<Category> categories;
     Context context;
 
+    public interface OnItemClicklistener {
+        void onItemClick(int position);
+    }
+
+    OnItemClicklistener mListener;
+
     MyDatabase mydb;
 
     public CategoriesAdapterUser(List<Category> categories, Context context) {
@@ -33,7 +39,7 @@ public class CategoriesAdapterUser extends RecyclerView.Adapter<CategoriesAdapte
     @Override
     public CategoriesViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         View view = LayoutInflater.from(context).inflate(R.layout.item_category,parent,false);
-        return new CategoriesAdapterUser.CategoriesViewHolder(view);
+        return new CategoriesAdapterUser.CategoriesViewHolder(view,mListener);
     }
 
     @Override
@@ -56,18 +62,34 @@ public class CategoriesAdapterUser extends RecyclerView.Adapter<CategoriesAdapte
     @Override
     public int getItemCount() { return categories.size(); }
 
+    public void setOnItemClickListener(CategoriesAdapterUser.OnItemClicklistener listener) {
+        mListener = listener;
+    }
+
     public class CategoriesViewHolder extends RecyclerView.ViewHolder {
 
         ImageView catPicIV;
         TextView catNameTv;
         TextView catNumberTv;
 
-        public CategoriesViewHolder(@NonNull View itemView) {
+        public CategoriesViewHolder(@NonNull View itemView, final OnItemClicklistener listener) {
             super(itemView);
 
             catPicIV = itemView.findViewById(R.id.catPicIV);
             catNameTv = itemView.findViewById(R.id.catNameTv);
             catNumberTv = itemView.findViewById(R.id.catNumberTv);/**/
+
+            itemView.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    if(listener != null) {
+                        int position = getAdapterPosition();
+                        if(position != RecyclerView.NO_POSITION) {
+
+                        }
+                    }
+                }
+            });
         }
     }
 }
